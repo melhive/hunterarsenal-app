@@ -27,7 +27,7 @@
     else { let n = 0; show(0); setInterval(() => { n = n >= rows.length ? 0 : n + 1; show(n); }, 1400); }
   }
 
-  // Latest release: version, date, size, checksum, and notes from GitHub. On failure the static text stays.
+  // Latest release: version, date, size, and notes from GitHub. On failure the static text stays.
   const set = (key, text) => document.querySelectorAll(`[data-release="${key}"]`).forEach(el => { el.textContent = text; });
   fetch(`https://api.github.com/repos/${REPO}/releases/latest`, { headers: { Accept: 'application/vnd.github+json' } })
     .then(r => (r.ok ? r.json() : Promise.reject(r.status)))
@@ -39,8 +39,6 @@
       if (mb) { set('size', `${mb} · Android 6.0+`); set('size-only', mb); }
       if (rel.published_at) set('date', new Date(rel.published_at).toLocaleDateString(undefined, { year: 'numeric', month: 'short', day: 'numeric' }));
       const body = String(rel.body || '');
-      const sha = (apk && apk.digest && apk.digest.replace(/^sha256:/, '')) || (body.match(/SHA-256:\s*`?([0-9a-f]{64})/i) || [])[1];
-      if (sha) set('sha', sha);
       const notes = body.split('\n').filter(l => /^\s*[-*•]\s+/.test(l)).map(l => l.replace(/^\s*[-*•]\s+/, ''));
       const box = document.querySelector('[data-release="notes"]'), wrap = document.querySelector('[data-release-notes]');
       if (box && wrap && notes.length) {
