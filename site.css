@@ -120,7 +120,7 @@ h1 b { color: var(--accent); }
 /* features */
 .grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1rem; }
 .grid article { padding: 0 0 1.2rem; border: 1px solid var(--line); background: rgba(14, 20, 26, .7); clip-path: polygon(.8rem 0, 100% 0, 100% calc(100% - .8rem), calc(100% - .8rem) 100%, 0 100%, 0 .8rem); }
-.grid img { width: 100%; height: auto; aspect-ratio: 4 / 3; margin-bottom: 1rem; border-bottom: 1px solid var(--line); }
+.grid img { width: 100%; height: auto; aspect-ratio: 18 / 17; margin-bottom: 1rem; border-bottom: 1px solid var(--line); }
 .grid h3 { margin: 0 1.2rem .3rem; font: 700 1.3rem var(--display); color: var(--accent-hi); } .grid p { margin: 0 1.2rem; font-size: .95rem; }
 
 /* privacy */
